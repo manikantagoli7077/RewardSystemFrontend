@@ -1,0 +1,30 @@
+/* Background.css */
+
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation: moveBackground 20s linear infinite alternate-reverse;
+    background: linear-gradient(45deg, #4CAF50, #2196F3, #FF9800);
+    background-size: 200% 200%;
+  }
+  
+  @keyframes moveBackground {
+    from {
+      background-position: 0% 0%;
+    }
+    to {
+      background-position: 100% 100%;
+    }
+  }
+  
