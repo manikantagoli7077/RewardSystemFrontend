@@ -11,18 +11,26 @@ const Dashboard = () => {
     const [data, setData] = useState([]);
     const [pendingApprovals,setPendingApprovals]=useState([]);
     const [totalPoints, setTotalpoints]=useState(0);
+    const [loading,setLoading]=useState(true);
     // const [pendingApprovals, setPendingapprovals]=useState(0);
 
     useEffect(() => {
       // Fetch data when the component mounts
-      fetchMyRewards().then((result) => {
-        setData(result);
-      });
+      try{
+        setLoading(true)
+        fetchMyRewards().then((result) => {
+          setData(result);
+          setLoading(false);
+        });
+      }catch{
+        setLoading(false);
+      }
+      
     }, []);
       useEffect(() => {
         const calculateTotalPoints = () => {
           const approvedRecords=data.filter((item)=>item.status==='Approved');
-          const total = approvedRecords.reduce((accumulator, current) => accumulator + current.points, 0);
+          const total = approvedRecords.reduce((accumulator, current) => accumulator + parseInt(current.rewards.rewardPoints), 0);
           setTotalpoints(total);
         };
     
@@ -35,7 +43,7 @@ const Dashboard = () => {
       //     setPendingApprovals(result);
       //   });
       // }, []);
-      const myRewards=data.filter((item)=>item.status==='pending');
+      const myRewards=data.filter((item)=>item.status==='Pending');
       const pendingApprovalCount=myRewards.length;
 
   return (
@@ -44,12 +52,12 @@ const Dashboard = () => {
     <RequestForm/>
     <div style={{display:'flex',margin:'50px',float:'left',marginLeft:'13%'}}>
       <Link to='/myrewards' style={{textDecoration: 'none', color: 'black' }}>
-        <BoxComponent heading="My Rewards" number={totalPoints} />
+        <BoxComponent heading="My Rewards" loading={loading} number={totalPoints} />
       </Link>
     </div>
     <div style={{display:'flex',margin:'50px'}}>
       <Link to='/pendingapprovals' style={{textDecoration: 'none', color: 'black' }}>
-        <BoxComponent heading="Pending Approvals" number={pendingApprovalCount} />
+        <BoxComponent heading="Pending Approvals" loading={loading} number={pendingApprovalCount} />
       </Link>
       </div>
         

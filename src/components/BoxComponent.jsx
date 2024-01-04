@@ -1,9 +1,8 @@
 import { Avatar, Container, Typography } from '@mui/material'
 import React from 'react'
-import { deepPurple } from '@mui/material/colors';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import CircularProgress from '@mui/material/CircularProgress';
 
-const BoxComponent = ({heading,number}) => {
+const BoxComponent = ({heading,number,loading}) => {
   return (
     
       <Container maxWidth="sm" style={{
@@ -24,10 +23,13 @@ const BoxComponent = ({heading,number}) => {
         {heading}
       </Typography>
       <Typography variant="h2" style={{ marginTop: '20px' }}>
-        {number}
-      {/* <Avatar sx={{ width: 100, height: 100, margin: 'auto', backgroundColor: deepPurple[500] }}>
-        <AccessTimeIcon sx={{ fontSize: 50 }} />
-      </Avatar> */}
+        {
+          loading?(
+            <CircularProgress size={40}/>
+          ):(
+            <>{number}</>
+          )
+        }
       </Typography>
     </Container>    
     

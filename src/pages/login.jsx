@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import animationData from '../lottie/lottie'
 import animationData2 from '../lottie/lottie2'
+import CircularProgress from '@mui/material/CircularProgress';
 // import './css/loginbg.css'
 // import { unstable_HistoryRouter } from 'react-router-dom';
 
@@ -16,6 +17,8 @@ const navigate=useNavigate()
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -54,22 +57,28 @@ const navigate=useNavigate()
 //   };
 const handleLogin = async () => {
     try {
-      await AuthService.login(username, password);
+      setLoading(true);
+      await AuthService.signIn(username, password);
       const userRole = AuthService.getRole();
-      const userName = AuthService.getUsername();
+      // const userName = AuthService.getUsername();
       // const user = { userName, userRole };
       // setUser(user);
       // Conditionally redirect based on the user's role
-      if (userRole === 'employee') {
+      if (userRole === 'ROLE_EMPLOYEE') {
         navigate('/employee');
-      } else if (userRole === 'manager') {
+      } else if (userRole === 'ROLE_MANAGER') {
         navigate('/manager');
       } else {
         console.error('Invalid user role');
         // Handle unexpected user role (show error message, etc.)
       }
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      alert("Login Successfull")
+      setLoading(false);
     } catch (error) {
       console.error('Login failed:', error.message);
+      alert("Login Failed")
+      setLoading(false);
       
       // Handle login failure (show error message, etc.)
     }
@@ -141,8 +150,11 @@ const handleLogin = async () => {
           color="primary"
           style={{ margin: '16px 0' }}
           onClick={handleLogin}
+          
+          disabled={loading}
+          startIcon={loading && <CircularProgress size={20}/>}
         >
-          Login
+          {loading ? 'Logging in...Please wait' : 'Login'}
         </Button>
       </Paper>
     </Container>

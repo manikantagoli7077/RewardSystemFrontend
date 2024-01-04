@@ -2,38 +2,48 @@ import React, { useEffect, useState } from 'react'
 import NavBar from './NavBar'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper, Button } from '@mui/material'
 import axios from 'axios';
+import CircularProgress from '@mui/material/CircularProgress';
 
-const ApproveTable = ({data,heading}) => {
-  const [tableData, setTableData] = useState([]);
+const ApproveTable = ({data,heading,loading}) => {
 
-  useEffect(() => {
-    // Fetch data from the JSON Server API
-    axios.get('http://localhost:3500/myrewards')
-      .then(response => setTableData(response.data))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
+  const token=localStorage.getItem('token');
+  const empId=localStorage.getItem('empId')
 
-  const handleActionClick = (id, status) => {
-    // Find the row with the given id in the local state
-    const updatedData = tableData.map(row => {
-      if (row.id === id) {
-        return { ...row, status }; // Update the status field
-      }
-      return row;
-    });
-
-    // Update the local state
-    setTableData(updatedData);
-
-    // Send a PATCH request to update the status in the JSON Server API
-    axios.patch(`http://localhost:3500/myrewards/${id}`, { status })
+  const handleApprove = (id) => {
+    // Send a PUT request with the approval status set to true
+    const headers={
+      'Content-Type':'application/json',
+      'Authorization':'Bearer '+token,
+    }
+    axios.put(`https://rewardsystembackend.onrender.com/api/approveOrReject/${empId}`, { id:id,approve: true },{headers})
       .then(response => {
-        console.log('Status updated successfully:', response.data)
-        alert(`${status} Successfully`);
+        // Handle the response accordingly (update local state, show a message, etc.)
+        console.log('Request Approved:', response.data);
+        alert("Request Approved");
         window.location.reload();
-  })
-      .catch(error => console.error('Error updating status:', error));
+      })
+      .catch(error => {
+        console.error('Error updating data:', error);
+      });
   };
+  const handleReject = (id) => {
+    // Send a PUT request with the approval status set to false
+    const headers={
+      'Content-Type':'application/json',
+      'Authorization':'Bearer '+token,
+    }
+    axios.put(`https://rewardsystembackend.onrender.com/api/approveOrReject/${empId}`, { id:id,approve: false },{headers})
+      .then(response => {
+        // Handle the response accordingly (update local state, show a message, etc.)
+        console.log('Request Rejected:', response.data);
+        alert("Request Rejected");
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error('Error updating data:', error);
+      });
+  };
+
   return (
     <div>
       <NavBar/>
@@ -52,22 +62,30 @@ const ApproveTable = ({data,heading}) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row) => (
+          {loading ? (
+            <TableRow>
+            <TableCell colSpan={5}>
+              <CircularProgress size={20} /> Loading...
+            </TableCell>
+          </TableRow>
+          ):(
+            data.map((row) => (
             <TableRow key={row.id}>
-              <TableCell></TableCell>
-              <TableCell>{row.selectedOption}</TableCell>
-              <TableCell>{row.points}</TableCell>
-              <TableCell>{row.comment}</TableCell>
+              <TableCell>{row.empId}</TableCell>
+              <TableCell>{row.rewards?row.rewards.rewardName:'N/A'}</TableCell>
+              <TableCell>{row.rewards?row.rewards.rewardName:'N/A'}</TableCell>
+              <TableCell>{row.comments}</TableCell>
               <TableCell>
-                  <Button variant="contained" color="primary" onClick={() => handleActionClick(row.id,'Approved')}>
+                  <Button variant="contained" color="primary" onClick={() => handleApprove(row.id)}>
                     Approve
                   </Button>
-                  <Button variant="contained" color="secondary" onClick={() => handleActionClick(row.id,'Rejected')} style={{ marginLeft: '8px' }}>
+                  <Button variant="contained" color="secondary" onClick={() => handleReject(row.id)} style={{ marginLeft: '8px' }}>
                     Reject
                   </Button>
                 </TableCell>
             </TableRow>
-          ))}
+          ))
+        )}
         </TableBody>
       </Table>
     </TableContainer>

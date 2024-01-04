@@ -1,17 +1,42 @@
 // api.js
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3500';
+const BASE_URL = 'https://rewardsystembackend.onrender.com';
+const empId=localStorage.getItem('empId');
+const token=localStorage.getItem('token');
+const headers={
+  'Content-Type':'application/json',
+  'Authorization':'Bearer '+token,
+};
 
 export const fetchMyRewards = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/myrewards`);
+    const response = await axios.get(`${BASE_URL}/api/myrequests/${empId}`,{headers});
     return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
     throw error;
   }
 };
+export const fetchReqCount = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/requests/${empId}`,{headers});
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+// export const fetchMyName = async () => {
+//   try {
+//     const response = await axios.get(`${BASE_URL}/api/getname/${empId}`,{headers});
+//     localStorage.setItem('empName',response.data)
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     throw error;
+//   }
+// };
 export const fetchPendingApprovals = async () => {
     try {
       const response = await axios.get(`${BASE_URL}/pendingapprovals`);

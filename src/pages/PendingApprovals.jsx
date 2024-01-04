@@ -4,18 +4,27 @@ import axios from 'axios';
 import { fetchMyRewards, fetchPendingApprovals } from '../api/api';
 
 const PendingApprovals = () => {
+    const [loading,setLoading]=useState(true)
     const [data, setData] = useState([]);
 
     useEffect(() => {
+      try{
+        setLoading(true)
+        fetchMyRewards().then((result) => {
+          setData(result);
+          setLoading(false);
+        });
+
+      }catch{
+        setLoading(false)
+      }
       // Fetch data when the component mounts
-      fetchMyRewards().then((result) => {
-        setData(result);
-      });
+      
     }, []);
-    const myRewards=data.filter((item)=>item.status==='pending');
+    const myRewards=data.filter((item)=>item.status==='Pending');
   return (
     <div>
-      <DataTable data={myRewards} heading='Pending Approvals'/>
+      <DataTable data={myRewards} loading={loading} heading='Pending Approvals'/>
     </div>
   )
 }

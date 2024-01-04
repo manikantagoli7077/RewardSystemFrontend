@@ -231,7 +231,7 @@
     {
       "selectedOption": "Out of Box",
       "comment": "out of box",
-      "status": "pending",
+      "status": "Rejected",
       "value": "Out of Box",
       "points": 100,
       "id": 7
@@ -267,6 +267,38 @@
       "value": "5 Days in Office",
       "points": 10,
       "id": 11
+    },
+    {
+      "selectedOption": "5 Days in Office",
+      "comment": "I came to ofc 5 days",
+      "status": "Approved",
+      "value": "5 Days in Office",
+      "points": 10,
+      "id": 12
+    },
+    {
+      "selectedOption": "Out of Box",
+      "comment": "demo",
+      "status": "pending",
+      "value": "Out of Box",
+      "points": 100,
+      "id": 13
+    },
+    {
+      "selectedOption": "Resolved the total incidents in a week",
+      "comment": "fdf",
+      "status": "Approved",
+      "rewardName": "Resolved the total incidents in a week",
+      "points": 1,
+      "id": 14
+    },
+    {
+      "selectedOption": "5 Days in Office",
+      "comment": "edede",
+      "status": "pending",
+      "rewardName": "5 Days in Office",
+      "rewardPoints": 10,
+      "id": 15
     }
   ],
   "pendingapprovals": [
@@ -346,45 +378,38 @@
   "options": [
     {
       "id": 1,
-      "value": "5 Days in Office",
-      "label": "5 Days in Office",
-      "points": 10
+      "rewardName": "5 Days in Office",
+      "rewardPoints": 10
     },
     {
       "id": 2,
-      "value": "Resolved the total incidents in a week",
-      "label": "Resolved the total incidents in a week",
-      "points": 1
+      "rewardName": "Resolved the total incidents in a week",
+      "rewardPoints": 1
     },
     {
       "id": 3,
-      "value": "Out of Box",
-      "label": "Out of Box",
-      "points": 100
+      "rewardName": "Out of Box",
+      "rewardPoints": 100
     },
     {
       "id": 4,
-      "value": "Participation in ORG events",
-      "label": "Participation in ORG events",
-      "points": 50
+      "rewardName": "Participation in ORG events",
+      "rewardPoints": 50
     },
     {
       "id": 5,
-      "value": "Winning the Events",
-      "label": "Winning the Events",
-      "points": 100
+      "rewardName": "Winning the Events",
+      "rewardPoints": 100
     },
     {
       "id": 6,
-      "value": "Document creation",
-      "label": "Document creation",
-      "points": 50
+      "rewardName": "Document creation",
+      "rewardPoints": 50
     },
     {
       "id": 7,
-      "value": "Speaking in a larger forum",
-      "label": "Speaking in a larger forum",
-      "points": 50
+      "rewardName": "Speaking in a larger forum",
+      "rewardPoints": 50
     }
   ]
 }

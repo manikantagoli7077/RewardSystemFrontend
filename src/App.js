@@ -32,12 +32,12 @@ function App() {
    <>
    <Routes>
     <Route path='/' element={<PublicElement><Login/></PublicElement>}/>
-    <Route path='/employee' element={<UserElement><Employee/></UserElement>}>
+    <Route path='/employee' element={<Employee/>}>
       
     </Route>
     <Route path='/myrewards' element={<MyRewards/>}/>
     <Route path='/pendingapprovals' element={<PendingApprovals/>}/>
-    <Route path='/manager' element={<ManagerElement><Manager/></ManagerElement>}/>
+    <Route path='/manager' element={<Manager/>}/>
     <Route path='/employeerequests' element={<EmployeeRequests/>}/> 
     <Route path='*'element={<div>Page Not Found!</div>}/>
    </Routes>

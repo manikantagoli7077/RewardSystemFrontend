@@ -1,8 +1,9 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material'
 import React from 'react'
 import NavBar from './NavBar'
+import CircularProgress from '@mui/material/CircularProgress';
 
-const DataTable = ({data,heading}) => {
+const DataTable = ({data,heading,loading}) => {
   return (
       <div>
         <NavBar/>
@@ -20,14 +21,25 @@ const DataTable = ({data,heading}) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.selectedOption}</TableCell>
-              <TableCell>{row.points}</TableCell>
-              <TableCell>{row.comment}</TableCell>
-              <TableCell style={{ color: getStatusColor(row.status) }}>{row.status}</TableCell>
+          {
+            loading?(
+            <TableRow>
+                <TableCell colSpan={5}>
+                <CircularProgress size={20} /> Loading...
+               </TableCell>
             </TableRow>
-          ))}
+            ):(
+
+              data.map((row) => (
+                <TableRow key={row.id}>
+                <TableCell>{row.rewards.rewardName}</TableCell>
+                <TableCell>{row.rewards.rewardPoints}</TableCell>
+                <TableCell>{row.comments}</TableCell>
+                <TableCell style={{ color: getStatusColor(row.status) }}>{row.status}</TableCell>
+                </TableRow>
+                ))
+                )
+              }
         </TableBody>
       </Table>
     </TableContainer>
@@ -37,7 +49,7 @@ const DataTable = ({data,heading}) => {
 }
 const getStatusColor = (status) => {
   switch (status) {
-    case 'pending':
+    case 'Pending':
       return 'orange';
     case 'Rejected':
       return 'red';
