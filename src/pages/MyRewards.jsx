@@ -6,20 +6,43 @@ import {fetchMyRewards} from '../api/api'
 const MyRewards = () => {
     const [loading,setLoading]=useState(true)
     const [data, setData] = useState([]);
-    
+    const empId=localStorage.getItem('empId')
+    const token=localStorage.getItem('token')
     useEffect(() => {
-      // Fetch data when the component mounts
-      try{
-        setLoading(true)
-        fetchMyRewards().then((result) => {
-          setData(result);
+      // Fetch options from API when the component mounts
+      const fetchMyRewards = async () => {
+        try {
+          setLoading(true);
+          const response = await axios.get(`https://rewardsystembackend.onrender.com/api/myrequests/${empId}`,{
+            headers:{
+              'Content-Type':'application/json',
+              'Authorization':'Bearer '+token
+            },
+          });
+          console.log(response.data)
+          setData(response.data);
           setLoading(false);
-        });
-      }catch{
-        setLoading(false);
-      }
-      
+        } catch (error) {
+          console.error('Error fetching options:', error);
+          setLoading(false);
+        }
+      };
+  
+      fetchMyRewards();
     }, []);
+    // useEffect(() => {
+    //   // Fetch data when the component mounts
+    //   try{
+    //     setLoading(true)
+    //     fetchMyRewards().then((result) => {
+    //       setData(result);
+    //       setLoading(false);
+    //     });
+    //   }catch{
+    //     setLoading(false);
+    //   }
+      
+    // }, []);
 
     const myRewards=data.filter((item)=>item.status==='Approved'||item.status==='Rejected');
     

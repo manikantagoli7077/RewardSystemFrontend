@@ -1,22 +1,16 @@
-// Login.js
-
 import React, { useState } from 'react';
 import { Button, TextField, Paper, Typography, Container } from '@mui/material';
-import axios from 'axios';
 import AuthService from '../service/AuthService';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import animationData from '../lottie/lottie'
 import animationData2 from '../lottie/lottie2'
 import CircularProgress from '@mui/material/CircularProgress';
-// import './css/loginbg.css'
-// import { unstable_HistoryRouter } from 'react-router-dom';
 
 const Login = () => {
 const navigate=useNavigate()
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const defaultOptions = {
@@ -36,41 +30,20 @@ const navigate=useNavigate()
       preserveAspectRatio: "xMidYMid slice"
     }
   };
-//   const handleLogin = async () => {
-//     try {
-//       const response = await axios.get('http://localhost:3500/users', {
-//         params: { email, password },
-//       });
 
-//       const user = response.data[0];
-
-//       if (user) {
-//         // Authentication successful, you can redirect or perform further actions
-//         console.log('Login successful:', user);
-//       } else {
-//         setError('Invalid email or password');
-//       }
-//     } catch (error) {
-//       console.error('Error during login:', error);
-//       setError('Error during login. Please try again.');
-//     }
-//   };
 const handleLogin = async () => {
     try {
       setLoading(true);
       await AuthService.signIn(username, password);
       const userRole = AuthService.getRole();
-      // const userName = AuthService.getUsername();
-      // const user = { userName, userRole };
-      // setUser(user);
-      // Conditionally redirect based on the user's role
+      
       if (userRole === 'ROLE_EMPLOYEE') {
         navigate('/employee');
       } else if (userRole === 'ROLE_MANAGER') {
         navigate('/manager');
       } else {
         console.error('Invalid user role');
-        // Handle unexpected user role (show error message, etc.)
+        
       }
       await new Promise((resolve) => setTimeout(resolve, 2000));
       alert("Login Successfull")
@@ -80,7 +53,7 @@ const handleLogin = async () => {
       alert("Login Failed")
       setLoading(false);
       
-      // Handle login failure (show error message, etc.)
+      
     }
   };
 
@@ -94,14 +67,10 @@ const handleLogin = async () => {
         width={400}
       />
     </div>
-    {/* <div>
-    <Typography variant="h5">Login</Typography>
-    </div> */}
     
     <Container component="main" maxWidth="sm" style={{marginTop:"6%"}}>
       <div style={
         {textAlign: 'center',
-        // marginTop: '10px',
         marginBottom:'10%',
         paddingLeft: '150px',
         paddingRight:'150px',

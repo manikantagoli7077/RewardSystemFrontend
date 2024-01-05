@@ -4,7 +4,7 @@ import BoxComponent from '../components/BoxComponent'
 import RequestForm from '../components/RequestForm'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { fetchMyRewards, fetchPendingApprovals } from '../api/api'
+// import { fetchMyRewards, fetchPendingApprovals } from '../api/api'
 
 const Dashboard = () => {
     // const classes = useStyles();
@@ -13,20 +13,43 @@ const Dashboard = () => {
     const [totalPoints, setTotalpoints]=useState(0);
     const [loading,setLoading]=useState(true);
     // const [pendingApprovals, setPendingapprovals]=useState(0);
-
+    const empId=localStorage.getItem('empId')
+    const token=localStorage.getItem('token')
     useEffect(() => {
-      // Fetch data when the component mounts
-      try{
-        setLoading(true)
-        fetchMyRewards().then((result) => {
-          setData(result);
+      // Fetch options from API when the component mounts
+      const fetchMyRewards = async () => {
+        try {
+          setLoading(true);
+          const response = await axios.get(`https://rewardsystembackend.onrender.com/api/myrequests/${empId}`,{
+            headers:{
+              'Content-Type':'application/json',
+              'Authorization':'Bearer '+token
+            },
+          });
+          console.log(response.data)
+          setData(response.data);
           setLoading(false);
-        });
-      }catch{
-        setLoading(false);
-      }
-      
+        } catch (error) {
+          console.error('Error fetching options:', error);
+          setLoading(false);
+        }
+      };
+  
+      fetchMyRewards();
     }, []);
+    // useEffect(() => {
+    //   // Fetch data when the component mounts
+    //   try{
+    //     setLoading(true)
+    //     fetchMyRewards().then((result) => {
+    //       setData(result);
+    //       setLoading(false);
+    //     });
+    //   }catch{
+    //     setLoading(false);
+    //   }
+      
+    // }, []);
       useEffect(() => {
         const calculateTotalPoints = () => {
           const approvedRecords=data.filter((item)=>item.status==='Approved');

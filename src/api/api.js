@@ -2,22 +2,22 @@
 import axios from 'axios';
 
 const BASE_URL = 'https://rewardsystembackend.onrender.com';
-const empId=localStorage.getItem('empId');
 const token=localStorage.getItem('token');
+const empId=localStorage.getItem('empId');
 const headers={
   'Content-Type':'application/json',
   'Authorization':'Bearer '+token,
 };
 
-export const fetchMyRewards = async () => {
-  try {
-    const response = await axios.get(`${BASE_URL}/api/myrequests/${empId}`,{headers});
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
-};
+// export const fetchMyRewards = async () => {
+//   try {
+//     const response = await axios.get(`${BASE_URL}/api/myrequests/${empId}`,{headers});
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     throw error;
+//   }
+// };
 export const fetchReqCount = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/api/requests/${empId}`,{headers});

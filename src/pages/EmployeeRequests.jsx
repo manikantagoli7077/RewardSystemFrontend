@@ -4,7 +4,15 @@ import axios from 'axios';
 
 const EmployeeRequests = () => {
     const [data, setData] = useState([]);
+    // const [empId,setEmpId]=useState('');
     const empId=localStorage.getItem('empId')
+    // useEffect(() => {
+    //   // Retrieve employee ID from localStorage when the component mounts
+    //   const storedEmployeeId = localStorage.getItem('empId');
+    //   if (storedEmployeeId) {
+    //     setEmpId(storedEmployeeId);
+    //   }
+    // }, []);
     const token=localStorage.getItem('token')
     const [loading, setLoading] = useState(true);
     // const [requestCount,setRequestCount]=useState(0)

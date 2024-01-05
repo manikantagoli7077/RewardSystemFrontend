@@ -6,7 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const RequestForm = () => {
   const [options, setOptions] = useState([]);
-    const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
   const [comments, setComments] = useState('');
   const [empId, setEmpId] = useState('');
   const token=localStorage.getItem('token');
@@ -79,7 +79,7 @@ const RequestForm = () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       alert('Submitted Successfully')
       setSubmitting(false);
-      window.location.reload();
+      window.location.reload(true);
     } catch (error) {
       // Handle errors
       console.error('Error:', error);
