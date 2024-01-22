@@ -14,7 +14,7 @@ import EmployeeRequests from './pages/Rewards/EmployeeRequests';
 import PrivateRoute from './pages/Service/PrivateRoute';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-localStorage.setItem('BASE_URL','http://localhost:8080')
+localStorage.setItem('BASE_URL','http://item-s099971:8080')
 
 
 
