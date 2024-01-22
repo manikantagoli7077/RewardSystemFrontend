@@ -5,6 +5,7 @@ import Login from '../Login/login';
 
 
 const LandingPage = () => {
+  window.location.reload();
   const containerStyle = {
     display: 'flex',
     

@@ -37,6 +37,7 @@ const Login = () => {
           await new Promise((resolve) => setTimeout(resolve, 2000));
           alert("Login Successfull")
           setLoading(false);
+          window.location.reload();
         } catch (error) {
           console.error('Login failed:', error.message);
           alert("Login Failed")
