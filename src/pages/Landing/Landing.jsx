@@ -5,12 +5,6 @@ import Login from '../Login/login';
 
 
 const LandingPage = () => {
-  const n=1;
-  while(n>0){
-
-    window.location.reload();
-    --n;
-  }
   const containerStyle = {
     display: 'flex',
     
