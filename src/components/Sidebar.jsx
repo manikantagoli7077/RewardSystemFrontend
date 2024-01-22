@@ -120,7 +120,7 @@ const openTeamModal=()=>{
         <Divider />
         <List>
         <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton >
                     {/* <ListItemIcon sx={{color:"#DD212A"}}>
                        <DashboardIcon/>
                     </ListItemIcon> */}
@@ -131,68 +131,69 @@ const openTeamModal=()=>{
                     </ListItemText>
                 </ListItemButton>
             </ListItem >
+            <Link to='/Dashboard' style={{textDecoration:'none',color:'black'}}>
             <ListItem disablePadding>
                 <ListItemButton>
                     <ListItemIcon sx={{color:"#DD212A"}}>
                        <DashboardIcon/>
                     </ListItemIcon>
                     <ListItemText>
-                      <Link to='/Dashboard' style={{textDecoration:'none',color:'black'}}>
+                      
                         <Typography variant="body1" sx={{ fontSize: '14px' }} color='black'>Dashboard</Typography>
-                      </Link>
                     </ListItemText>
                 </ListItemButton>
             </ListItem >
+            </Link>
+                      <Link to='/myrewards' style={{textDecoration:'none',color:'black'}}>
             <ListItem disablePadding>
                 <ListItemButton>
                     <ListItemIcon sx={{color:"#DD212A"}}>
                        <StarsIcon/>
                     </ListItemIcon>
                     <ListItemText>
-                      <Link to='/myrewards' style={{textDecoration:'none',color:'black'}}>
                         <Typography variant="body1" sx={{ fontSize: '14px' }} color='black'>My Rewards</Typography>
-                        </Link>
                     </ListItemText>
                 </ListItemButton>
             </ListItem>
+                        </Link>
+                      <Link to='/myteamrewards'style={{textDecoration:'none',color:'black'}}>
             <ListItem disablePadding>
                 <ListItemButton>
                     <ListItemIcon sx={{color:"#DD212A"}}>
                        <GradeIcon/>
                     </ListItemIcon>
                     <ListItemText>
-                      <Link to='/myteamrewards'style={{textDecoration:'none',color:'black'}}>
                         <Typography variant="body1" sx={{ fontSize: '14px' }} color='black'>Team Rewards</Typography>
-                        </Link>
                     </ListItemText>
                 </ListItemButton>
             </ListItem>
+                        </Link>
+                      <Link to='/pendingapprovals' style={{textDecoration:'none',color:'black'}}>
             <ListItem disablePadding>
                 <ListItemButton>
                     <ListItemIcon sx={{color:"#DD212A"}}>
                        <PendingIcon/>
                     </ListItemIcon>
                     <ListItemText>
-                      <Link to='/pendingapprovals' style={{textDecoration:'none',color:'black'}}>
                         <Typography variant="body1" sx={{ fontSize: '14px' }} color='black'>Pending Approvals</Typography>
-                      </Link>
                     </ListItemText>
                 </ListItemButton>
             </ListItem>
+                      </Link>
             {isManager && (
                 <>
+                      <Link to='/employeerequests' style={{textDecoration:'none',color:'black'}}>
                 <ListItem disablePadding>
                 <ListItemButton>
                     <ListItemIcon sx={{color:"#DD212A"}}>
                        <RuleSharpIcon/>
                     </ListItemIcon>
                     <ListItemText>
-                      <Link to='/employeerequests' style={{textDecoration:'none',color:'black'}}>
                         <Typography variant="body1" sx={{ fontSize: '14px' }} color='black'>Employee Requests</Typography>
-                       </Link>
                     </ListItemText>
                 </ListItemButton>
             </ListItem>
+                       </Link>
                 
                 </>
             )}
@@ -211,24 +212,24 @@ const openTeamModal=()=>{
                     </ListItemText>
                 </ListItemButton>
             </ListItem>
+                      <Link to='/passwordchange' style={{textDecoration:'none',color:'black'}}>
             <ListItem disablePadding>
                 <ListItemButton>
                     <ListItemIcon sx={{color:"#F78121"}}>
                        <LockResetIcon/>
                     </ListItemIcon>
                     <ListItemText>
-                      <Link to='/passwordchange' style={{textDecoration:'none',color:'black'}}>
                         <Typography variant="body1" sx={{ fontSize: '14px' }} color='black'>Change Password</Typography>
-                        </Link>
                     </ListItemText>
                 </ListItemButton>
             </ListItem>
+                        </Link>
             <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={logout}>
                     <ListItemIcon sx={{color:"#F78121"}}>
                        <LogoutIcon/>
                     </ListItemIcon>
-                    <ListItemText onClick={logout}>
+                    <ListItemText >
                         <Typography variant="body1" sx={{ fontSize: '14px' }} color='black' >Logout</Typography>
                     </ListItemText>
                 </ListItemButton>
