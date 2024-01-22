@@ -42,6 +42,7 @@ const Login = () => {
           console.error('Login failed:', error.message);
           alert("Login Failed")
           setLoading(false);
+          window.location.reload();
           
           
         }
