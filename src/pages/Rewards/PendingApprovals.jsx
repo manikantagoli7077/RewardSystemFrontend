@@ -30,7 +30,7 @@ const PendingApprovals = () => {
     };
     fetchMyRewards();
   },[]);
-  const myRewards=data.filter((item)=>item.status==='Pending'||item.status==='Rejected');
+  const myRewards=data.filter((item)=>item.status==='Pending');
   return (
     <div>
         <Sidebar/>

@@ -3,3 +3,41 @@
     
     padding: 0px;
 }
+/* styles.css or your preferred styling method */
+.table-container {
+    max-height: 400px; /* Set a maximum height for the content to enable scrolling */
+    overflow-y: auto;
+  }
+  
+  .table-header {
+    position: sticky;
+    top: 0;
+    background-color: #000000; /* Optional: Background color for the header */
+    z-index: 1; /* Optional: Set a higher z-index to make sure the header is on top of the content */
+  }
+  /* .MuiTableCell-root {
+    /* border-left: 1px solid black; */
+    /* border-right: 1px solid black; */
+  
+   
+  /* Optional: Style for the last cell in a row */
+  .MuiTableCell-root:last-child {
+    border-right: 1px solid black;
+    
+  }
+  .MuiTableCell-root:first-child {
+    border-left: 1px solid black;
+    
+  }
+  
+  /* Optional: Style for the last row in the body */
+  .MuiTableBody-root .MuiTableRow-root:last-child .MuiTableCell-root {
+    border-bottom: 1px solid black;
+  }
+  
+  /* Optional: Style for the last row in the header */
+  .MuiTableHead-root .MuiTableRow-root:last-child .MuiTableCell-root {
+    border-bottom: 1px solid black;
+  }
+  /* Add other styling for your table cells, rows, etc. */
+  

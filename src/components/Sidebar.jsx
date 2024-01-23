@@ -68,7 +68,7 @@ const openTeamModal=()=>{
       <AppBar
         position="fixed"
         sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-        style={{display:'flex',background:'none',boxShadow:'none',border:'solid',borderWidth:'0 0 1px 0',borderColor:'#E0E0E0'}}
+        style={{display:'flex',background:'white',boxShadow:'none',border:'solid',borderWidth:'0 0 1px 0',borderColor:'#E0E0E0'}}
       >
        
         <Toolbar>

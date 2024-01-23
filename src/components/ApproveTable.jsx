@@ -2,7 +2,7 @@ import React from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper, Button } from '@mui/material'
 import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
-
+import "./style.css"
 const ApproveTable = ({data,heading,loading}) => {
 
   const token=localStorage.getItem('token');
@@ -61,10 +61,10 @@ const ApproveTable = ({data,heading,loading}) => {
         {/* <Typography variant="h4" gutterBottom style={{display:'flex', margin:'3%'}}>
         {heading}
       </Typography> */}
-      <TableContainer  >
-      <Table style={{width:'95%'}}>
+      <TableContainer className="table-container" >
+      <Table style={{width:'85%'}}>
         <TableHead style={tableHeadStyle}>
-          <TableRow>
+          <TableRow className="table-header">
             <TableCell style={tableCellStyle}>EmpName</TableCell>
             <TableCell style={tableCellStyle}>Reward</TableCell>
             <TableCell style={tableCellStyle}>Points</TableCell>
@@ -86,8 +86,8 @@ const ApproveTable = ({data,heading,loading}) => {
               <TableCell>{row.rewards?row.rewards.rewardName:'N/A'}</TableCell>
               <TableCell>{row.rewards?row.rewards.rewardName:'N/A'}</TableCell>
               <TableCell>{row.comments}</TableCell>
-              <TableCell>
-                  <Button variant="contained" color="primary" onClick={() => handleApprove(row.id)} size='small'>
+              <TableCell width='200px'>
+                  <Button  variant="contained" color="primary" onClick={() => handleApprove(row.id)} size='small'>
                     Approve
                   </Button>
                   <Button variant="contained" color="secondary" onClick={() => handleReject(row.id)} size='small' style={{ marginLeft: '8px' }}>

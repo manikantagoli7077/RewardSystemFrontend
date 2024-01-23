@@ -1,6 +1,6 @@
 import { CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import React from 'react'
-
+import "./style.css"
 const DataTable = ({data,heading,loading}) => {
     const tableHeadStyle = {
         borderRadius: '10px', // You can adjust the value as needed
@@ -16,10 +16,10 @@ const DataTable = ({data,heading,loading}) => {
       };
   return (
     <div>
-      <TableContainer>
+      <TableContainer className="table-container">
         <Table style={{width:'80%'}}>
             <TableHead style={tableHeadStyle}>
-                <TableRow  >
+                <TableRow  className="table-header">
                     <TableCell style={tableCellStyle}>
                         Reward
                     </TableCell>
