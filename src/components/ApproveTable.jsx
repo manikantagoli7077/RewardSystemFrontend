@@ -8,7 +8,7 @@ const ApproveTable = ({data,heading,loading}) => {
   const token=localStorage.getItem('token');
   const empId=localStorage.getItem('empId');
   const BASE_URL=localStorage.getItem('BASE_URL');
-  
+  const empName=localStorage.getItem('empName')
 
   const handleApprove = (id) => {
     const headers={

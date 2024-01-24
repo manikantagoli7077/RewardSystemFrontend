@@ -82,7 +82,7 @@ const RequestForm = () => {
         'Content-Type':'application/json',
         'Authorization':'Bearer '+token,
       }
-      const response = await axios.post(`http://localhost:8080/api/submit/${empId}`,{
+      const response = await axios.post(`${BASE_URL}:8080/api/submit/${empId}`,{
         comments:comments,
         rewards:rewards
       },{headers});

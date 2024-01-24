@@ -9,6 +9,7 @@ const EmployeeRequests = () => {
     // const [empId,setEmpId]=useState('');
     const empId=localStorage.getItem('empId')
     const BASE_URL=localStorage.getItem('BASE_URL')
+    
     // useEffect(() => {
     //   // Retrieve employee ID from localStorage when the component mounts
     //   const storedEmployeeId = localStorage.getItem('empId');
